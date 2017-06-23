@@ -1,0 +1,162 @@
+* {
+	padding: 15px 15px 15px 15px;
+
+}
+
+body { 
+padding-top: 70px;
+}
+
+#heading {
+	text-align:center;
+	font-family: "Times New Roman", Times, serif;
+}
+
+#search {
+	margin-bottom:40px;
+	
+}
+
+
+#list {
+	text-align:center;
+
+}
+
+
+#h3_ab {
+	text-align:center;
+}
+
+#h3_str {
+	text-align:center;
+}
+
+#h3_tool {
+	text-align:center;
+	
+}
+
+#h3_git {
+	text-align:center;
+}
+
+#h3_contact {
+	text-align:center;
+	margin-bottom:70px;
+}
+
+img{
+	margin: 0 auto;
+}
+
+.contact_buttons {
+	float:right;
+	display: inline-block;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+
+#p_contact {
+	float:left;
+	
+}
+
+#p_foot{
+	text-align:center;
+	font-family: "Times New Roman", Times, serif;
+	padding-top:40px;
+}
+
+#link {
+	float:left;
+	border:2px groove brown;
+	border-radius:50px;
+	color:brown;
+	background-color:white;
+}
+
+.mytext{
+	text-align:justify;
+	line-height: 1.8;
+
+	
+}
+
+#hypo{
+	font-family:Impact, Charcoal, sans-serif;
+	padding:0px 4px 0px 0px;
+}
+
+.emphasize{
+background-color:brown;
+color:white;
+padding:2.5px;
+border-radius:30px;	
+}
+
+.modal-title{
+	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-style:italic;
+	border-style: solid;
+	border-top-style: dotted;
+}
+
+#clock-icon{
+	color:brown;	
+}
+#hot{
+	color:red;
+}
+
+
+.overlay{
+color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+#up_btn{
+	float:right;
+	border-radius:50%;
+}
+
+#up_btn a{
+	text-decoration:none;
+	color:grey;
+}
+#up_btn_tooltip{
+	display:none;
+	text-decoration:underline;
+	font-size:10px;
+	background-color:white;
+	border-radius:5px;
+}
+
+#up_btn:hover #up_btn_tooltip{
+	display:block;
+}
+.caret-div{
+	display:block;
+	margin:0 auto;
+	width:auto;
+	text-align:center;
+}
+.mycap{
+	display:block;
+	text-align:center;
+	margin:0 auto;
+	width:auto;
+	
+}
+#code_img{
+	border-radius:5%;
+	padding:20px;
+	border:2px groove rgb(153,153,153);
+	background-color:rgb(153,153,153);
+}

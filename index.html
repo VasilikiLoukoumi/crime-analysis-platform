@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="animate.css">
+<script src="jquery-3.1.1.min.js"></script>
+<script src="bootstrap.min.js"></script>
+</head>
+
+<body background="images/ch_map.png">
+
+<div class="container well">
+
+<!--search button-->
+<div id="search">
+
+<form class = "navbar-form navbar-right form-group" role = "search">
+ <input type = "text" class = "form-control" placeholder="search">
+<button type = "submit" class = "btn btn-default" >Submit</button>   
+</form> 
+
+</div>
+<!--end of search button-->
+
+
+<section id="home">
+<!--heading--->
+<h3 id="heading" class="jumbotron"> 
+Geospatial technology in crime analysis: Application to the municipality of Chaidari.<br><i class="fa fa-map-marker" aria-hidden="true"></i></h3>
+<!--end of heading-->
+
+<p class="mytext"><span id="hypo">Hypothesis:</span>Crime rates in the municipality of Chaidari have significantly <span class="emphasize"
+>risen in 2016</span>,
+ with regard to the rates of 2015. <span class="emphasize">Drug incidents</span>, in particular, have caused many tensions
+ between citizens and the municipal authorities.  What is more, the Chaidari police department 
+ is currently <span class="emphasize">wasting a lot of resources</span> moving around forces to cover all incident locations, as suggested by citizens’ calls.
+With the valuable help of our tool "Crime Inspector", we will compare crime rates of 2015 with those of 2016 and
+inspect the hot and cold spots of the Chaidari area for each time set. Rearranged daily patrol
+ routes as well as a new location to accommodate the police station’s needs will be proposed,
+ based on citizens’ recorded calls. Lastly, we will search through the drug related crimes to
+ discover unnoticed spatial relationships and make a conclusion on how to arm the city against the phenomenon.
+ <br>
+ All actions are “merged” into the toolset and can be used in separate decision analysis occasions.
+</p>
+
+
+
+<!--Menu-->
+<div class="row"> 
+<ul id="list" class="list-inline panel panel-success scrollable navbar navbar-default navbar-fixed-top">
+<li><a href="#home"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#toolset">Tool</a></li>
+<li><a href="#github">GitHub python files</a></li>
+<li><a href="#contact">Contact</a></li>
+</div>
+<!--end of Menu-->
+</section>
+
+<!--About-->
+<section id="about">
+<h3 id="h3_ab" class="alert alert-success"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+About</h3>
+<div class="row">
+<p class="text-center"><img class="img img-responsive img-thumbnail" src="images/arcToolBox.png"
+ alt="starting_layout" width="250px" height="200px"></p>
+<p class="mytext">"Crime Inspector" is a custom made ArcGis toolset that performs crime analysis for the city of Chaidari. 
+This analysis is based on fictional crime incidents, that supposedly occurred during the years of 2015 and 2016. The toolset 
+was built within the ArcGis Desktop software application (Version 10.2.2).
+</p> 
+<p class="mytext">Its main goals are to:
+ 1)Help police departments in their fight against crime through analysis,
+ 2) predict future danger zones and
+ 3) lead local authorities into building safer city environments. </p>
+</div>
+
+</section>
+<!--end of About-->
+
+
+<!--Structure-->
+<section id="data">
+<h3 id="h3_str"class="alert alert-success"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+Data</h3>
+<div class="row">
+ <ol>
+ <li>The Hellenic Statistic Authority of Greece handed us ground layers for Chaidari, including street, block and route information.
+ The data was gathered and imprinted by ELSTAT for the purpose of the 2001 and 2011 population and housing censuses. 
+ </li>
+ <li>A ground layer for Greece and a roads layer, retrieved from the website of geodatagov.gr, were also used.
+ </li>
+ <li>We enhanced our map with some of Chaidari's points of interest. These included the city hall, the police station, hospitals and mental institutions, cultural monuments and schools. 
+ We did so with the help of the Google Earth application. In accurateness, we downloaded a .kml 
+ file for each address of interest. We then used the KML to Layer tool of the ArcGIS Conversion 
+ toolbox to display our data.
+ </li>
+ </ol>
+ 
+  <div class="row">
+<img class="img img-responsive" src="images/chaidari_plain.png" alt="Map of Chaidari" width="650px" height="555px">
+<p class="mycap"><em>Chaidari map</em></p> 
+</div>
+
+<div class="row">
+<img class="img img-responsive" src="images/poi.png" alt="Points of interest" width="650px" height="555px">
+<p class="mycap"><em>Points of interest</em></p> 
+</div>
+ 
+ <div class="caret-div"><i class="fa fa-caret-down fa-5x text-center"></i></div>
+</div>
+<p class="mytext">
+ Α set of a hundred and thirty-three (133) random points were generated with the Random points 
+ tool of ArcMap. Subsequently, different fields were created for the crime category
+ (burglary, murder, drug related etc), the time in which the incident was declared to the police 
+ (Date and time), the time the police arrived (Date and time), the result of police interference 
+ (solved/not solved), case notes, the number of perpetrators, the perpetrator sex and nationality and their assault method (gun pointing/door breaking etc). Field descriptions were written in Greek, in context with the information provided by ELSTAT. In order to associate the random points with specific addresses, we generated x and y coordinates for each point, with the help of the Features
+ toolset and spatially joined each point to particular blocks and to corresponding addresses.</li>
+ </p>
+
+   <div class="row">
+<img class="img img-responsive" src="images/random.png" alt="Random points" width="650px" height="555px">
+<p class="mycap"><em>Randomly generated points</em></p> 
+</div>
+
+<div class="row">
+<img class="img img-responsive" src="images/incidents.png" alt="All Incidents" width="620px" height="540px">
+<p class="mycap"><em>Fields of the layer that contains all incidents</em></p> 
+</div>
+ 
+<div class="row">
+<img class="img img-responsive" src="images/geocode.png" alt="Geocoded addresses" width="250px" height="155px">
+<p class="mycap"><em>By choosing a point with the Identify tool, we can see all incident
+ information.</em></p> 
+</div>
+
+
+</section>
+
+<!--end of Structure-->
+
+
+<!--Toolset-->
+<section id="toolset">
+<h3 id="h3_tool"class="alert alert-success"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+Crime Inspector</h3>
+<img class="img img-responsive" id="crimeInsp" src="images/crimeInspector.png" alt="crime-inspector-display" width=860 height=400"/>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#first_act">First step</a></li>
+    <li><a data-toggle="tab" href="#integrate_div">Second step</a></li>
+    <li><a data-toggle="tab" href="#ellipse_center">Third step</a></li>
+    <li><a data-toggle="tab" href="#drugrelated">Fourth step</a></li>
+  </ul>
+
+<div class="tab-content">
+<div id="first_act" class="tab-pane fade in active">
+<p class="mytext"> "Crime Inspector" starts by splitting crime incidents to two layers. One consists of
+incidents that occured in <button id="2015_incidents_btn" class="btn btn-info">2015</button>, while the other contains all <button id="2016_incidents_btn"class="btn btn-info">2016</button> incidents. The division is 
+achieved by the implementation of <button id="query_btn" class="btn btn-warning" data-toggle="modal" data-target="#myQueries">queries</button> that select all crimes that have been reported prior or
+ after a specific date.
+</p> 
+
+<!--Modal begins-->
+<div id="myQueries" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title text-center">
+		 <i id="clock-icon" class="fa fa-spin fa-clock-o fa-lg"></i>
+		 Time Queries</h4>
+      </div>
+      <div class="modal-body">
+		<img class="img img-responsive" src="images/timequery2015.png" alt="query for 2015 incidents">
+        <p class="text-center"><caption class="caption"><em>Query for 2015 incidents.</em></caption></p>
+		<img class="img img-responsive" src="images/timequery2016.png" alt="query for 2016 incidents">
+        <p class="text-center"><caption class="caption"><em>Query for 2016 incidents.</em></caption></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+	</div>
+	</div>
+
+<!--Modal ends-->
+
+<!--Newly created layers-->
+
+<div style="display:none;" id="2015_incidents">
+<img class="img img-responsive" src="images/2015_incidents.png" >
+<p class="text-center"><caption class="caption "><em>Layer of 2015 incidents
+</em></caption></p>
+</div>
+
+<div style="display:none;" id="2016_incidents">
+<img class="img img-responsive" src="images/2016_incidents.png" >
+<p class="text-center"><caption class="caption "><em>Layer of 2016 incidents
+</em></caption><button style="display:none;" id="compare_btn" class="btn btn-default">Compare</button></p>
+
+</div>
+
+<!--end of newly created layers-->
+
+<!--Comparison of new layers-->
+
+<div id="arc_timesets" style="display:none">
+<img class="img img-responsive" src="images/2015arcdata.png" alt="incidents for both time sets">
+<img class="img img-responsive" src="images/2016arcdata.png" alt="incidents for both time sets">
+<p class="text-center"><caption><em>Number of incidents for both time sets.</em></caption></p>
+</div>
+<!--End of comparison-->
+
+</div><!--Ends first_act division-->
+
+
+
+<div  id="integrate_div" class="tab-pane fade">
+<p class="mytext">Next, it performs the integrate and <button id="collect_events_btn" class="btn
+btn-info">collect events</button> methods in order to proceed with  hot spot analysis for the incidents of 2015 and 2016. Since the data was randomly generated no more than one incident was placed within a block, so executing the integrate tool prior to Collect Events was essentially a necessity. The Collect Events method calculates the ICOUNT field which will serve as the input field
+ on the forthcoming <button id="hot_btn" data-toggle="modal" data-target="#Hot-div" 
+ class="btn btn-warning">Hot Spot Analysis</button>.The Hot and Cold Spots are calculated and 
+ added to <button id="display_btn" class="btn btn-info">display</button>.</p>
+<blockquote>
+The Integrate tool is used to maintain the integrity of shared feature boundaries by 
+making features coincident if they fall within the specified x,y tolerance. Features that fall
+ within the specified x,y tolerance are considered identical or coincident.
+ </blockquote>
+ <div style="display:none;" id="collect_events_div">
+ <img class="img img-responsive" src="images/collectEvents2015.png"> 
+ <p class="text-center"><caption>Concentration per block-2015</caption></p>
+ <img class="img img-responsive" src="images/collectEvents2016.png"> 
+ <p class="text-center"><caption>Concentration per block-2016</caption></p>
+ </div>
+ 
+ <!--Second Modal begins-->
+<div id="Hot-div" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <div class="modal-content">
+      <div class="modal-header">
+       <h4 class="modal-title text-center">
+		 <i id="hot" class="fa fa-fire fa-lg" aria-hidden="true"></i>
+		 Hot Spot Analysis</h4>
+      </div>
+      <div class="modal-body">
+	  <blockquote class="mytext">
+	  This tool works by looking at each feature within the context
+	  of neighboring features. A feature with a high value is interesting but may not be a
+	  statistically significant hot spot. <br>
+	  To be a statistically significant hot spot, a feature
+	  will have a high value and be surrounded by other features with high values as well. The
+	  local sum for a feature and its neighbors is compared proportionally to the sum of all
+	  features; when the local sum is very different from the expected local sum, and when that
+	  difference is too large to be the result of random chance, a statistically significant z-score results .
+	  </blockquote>
+	  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+	</div>
+	</div>
+
+<!--Second Modal ends-->
+
+ <div style="" id="hot_display">
+ <img class="img img-responsive" src="images/hotSpots_2015.png" alt="Hot Spot Analysis  for 2015 incidents">
+        <p class="text-center"><caption class="caption"><em>Hot Spot Analysis for 2015 incidents.</em></caption></p>
+		<img class="img img-responsive" src="images/hotSpots_2016.png" alt="Hot Spot Analysis for 2016 incidents">
+        <p class="text-center"><caption class="caption"><em>Hot Spot Analysis for incidents of
+		2016.</em></caption></p>
+		<img id="bin" class="img img-responsive" src="images/gi_bin.png" alt="Gi bin">
+	
+	
+</div>
+ 
+
+</div><!--End of integrate-div-->
+ 
+ <!--Standard deviation and median center for 2016 incidents-->
+ <div  id="ellipse_center" class="tab-pane fade">
+ <p class="mytext">From that point on, all actions are performed on the layer that includes the 2016 incidents.
+ These actions, include creating an <button id="ellipse_btn" class="btn btn-info">ellipse</button> covering the areas that crime has occurred,with the help of the Standard Deviation tool to take a look at its dominant
+ direction and finding the center of all incidents, by leveraging the
+ <button id="median_btn" class="btn btn-info">Median Center</button> tool. </p>
+ 
+ 
+ <div id="ellipse_div" style="display:none;">
+ <img src="images/ellipse.png" class="img img-responsive" alt="standard deviation">
+ <p class="text-center"><caption>The Standard Deviation Tool covers the crime 
+ heated area within an ellipse</caption></p>
+ </div>
+ <div id="median_div" style="display:none;">
+  <img src="images/median_center.png" class="img img-responsive" alt="standard deviation">
+ <p class="text-center"><caption>The smallest point shows current Police department location, whereas the largest
+ shows the location indicated by the "Median Center" tool.</caption></p>
+ </div>
+ 
+</div>
+<!--Drug related incidents-->
+<div  id="drugrelated" class="tab-pane fade">
+<p class="mytext">Then a new <button id="drug_query" class="btn btn-info">query</button> is performed on the 2016 incidents layer, to create a new layer
+ out of drug related delinquencies. On the newly created (via the Feature Layer Tool) and 
+ displayed layer of drug incidents, Crime Inspector performs 
+the Standard Deviation tool to place the problematic area within an <button id="drug_ellipse"
+class="btn btn-info">ellipse</button>.
+Subsequently, it performs the Intersect tool to find those incidents that have supposedly occurred within
+ an 800-meter distance from school buildings. The resulting layers are then added to 
+ <button id="displayschoolincidents_btn" class="btn btn-info">display</button>. 
+</p>
+</div>
+
+<div style="display:none;" id="drug_img_div">
+<img src="images/drug_q.png" class="img img-responsive" alt="Query for drug incidents">
+ <p class="text-center"><caption>Query to bring back drug related incidents.</caption></p>
+
+</div>
+
+<div style="display:none;" id="drugellipse_img_div">
+<img src="images/drug_geographic_d.png" class="img img-responsive" alt="Drug incidents' geographic distribution.">
+ <p class="text-center"><caption>Drug incidents' geographic distribution.</caption></p>
+
+</div>
+
+<div style="display:none;" id="drugsnearschools_div">
+<img src="images/close2school.png" class="img img-responsive" alt="Drug incidents occurring within 800 from school buildings..">
+ <p class="text-center"><caption>Drug incidents occurring within 800 from school buildings.</caption></p>
+
+</div>
+</div>
+
+
+
+ <button id="up_btn" class="btn btn-default"><a href="#toolset"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+</a></button>
+ <span id="up_btn_tooltip">Scroll to Crime Inspector main section</span>
+ </section>
+
+<!--end of Toolset-->
+
+
+<!--Github-->
+<section id="github">
+<div class="row">
+<h3 id="h3_git" class="alert alert-success"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+Python scripts on Github</h3>
+<!--<img class="img img-responsive" id="code_img" src="images/code.png" alt="code pic" width="450px" height="355px">
+-->
+<textarea class="form-control">
+# -*- coding: utf-8 -*-
+# ---------------------------------------------------------------------------
+# CrimeInspector.py
+# Created on: 2017-05-11 23:00:03.00000
+#   (generated by ArcGIS/ModelBuilder)
+# Usage: CrimeInspector <DrugGeographicDistribution><RELOCATION><Incidents2015><Incidents2016><DrugsnearSchools_shp><drugRelated><MODEL_B_incid2015><MODEL_B_incid2016><IncidentsGeographicDistribution><DirectDistribution_2015><modelB_CollectEvents2015><Output_Features><ModelB_hotspots_2015><Output_Features__2_><modelB_CollectEvents_2016><modelB_Hotspots_2016>
+# Description: 
+# ---------------------------------------------------------------------------
+
+# Import arcpy module
+import arcpy
+
+# Set Geoprocessing environments
+arcpy.env.extent = "466774,3223 4205414,4795 471070,4154 4209272,8048"
+
+# Script arguments
+DrugGeographicDistribution = arcpy.GetParameterAsText(0)
+if DrugGeographicDistribution == '#' or not DrugGeographicDistribution:
+    DrugGeographicDistribution = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\Dru_geographicDistribution" # provide a default value if unspecified
+
+RELOCATION = arcpy.GetParameterAsText(1)
+if RELOCATION == '#' or not RELOCATION:
+    RELOCATION = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\Relocation" # provide a default value if unspecified
+
+Incidents2015 = arcpy.GetParameterAsText(2)
+if Incidents2015 == '#' or not Incidents2015:
+    Incidents2015 = "Crime Data\\all_Random" # provide a default value if unspecified
+
+Incidents2016 = arcpy.GetParameterAsText(3)
+if Incidents2016 == '#' or not Incidents2016:
+    Incidents2016 = "Crime Data\\all_Random" # provide a default value if unspecified
+
+DrugsnearSchools_shp = arcpy.GetParameterAsText(4)
+if DrugsnearSchools_shp == '#' or not DrugsnearSchools_shp:
+    DrugsnearSchools_shp = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\DrugsnearSchools.shp" # provide a default value if unspecified
+
+drugRelated = arcpy.GetParameterAsText(5)
+if drugRelated == '#' or not drugRelated:
+    drugRelated = "MODEL_B_incid2016" # provide a default value if unspecified
+
+MODEL_B_incid2015 = arcpy.GetParameterAsText(6)
+if MODEL_B_incid2015 == '#' or not MODEL_B_incid2015:
+    MODEL_B_incid2015 = "MODEL_B_incid2015" # provide a default value if unspecified
+
+MODEL_B_incid2016 = arcpy.GetParameterAsText(7)
+if MODEL_B_incid2016 == '#' or not MODEL_B_incid2016:
+    MODEL_B_incid2016 = "MODEL_B_incid2016" # provide a default value if unspecified
+
+IncidentsGeographicDistribution = arcpy.GetParameterAsText(8)
+if IncidentsGeographicDistribution == '#' or not IncidentsGeographicDistribution:
+    IncidentsGeographicDistribution = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\Incidents2016_geographicDistribution" # provide a default value if unspecified
+
+DirectDistribution_2015 = arcpy.GetParameterAsText(9)
+if DirectDistribution_2015 == '#' or not DirectDistribution_2015:
+    DirectDistribution_2015 = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\DirectDistribution_2015" # provide a default value if unspecified
+
+modelB_CollectEvents2015 = arcpy.GetParameterAsText(10)
+if modelB_CollectEvents2015 == '#' or not modelB_CollectEvents2015:
+    modelB_CollectEvents2015 = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\modelB_CollectEvents2015" # provide a default value if unspecified
+
+Output_Features = arcpy.GetParameterAsText(11)
+if Output_Features == '#' or not Output_Features:
+    Output_Features = "MODEL_B_incid2015" # provide a default value if unspecified
+
+ModelB_hotspots_2015 = arcpy.GetParameterAsText(12)
+if ModelB_hotspots_2015 == '#' or not ModelB_hotspots_2015:
+    ModelB_hotspots_2015 = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\ModelB_hotspots_2015" # provide a default value if unspecified
+
+Output_Features__2_ = arcpy.GetParameterAsText(13)
+if Output_Features__2_ == '#' or not Output_Features__2_:
+    Output_Features__2_ = "MODEL_B_incid2016" # provide a default value if unspecified
+
+modelB_CollectEvents_2016 = arcpy.GetParameterAsText(14)
+if modelB_CollectEvents_2016 == '#' or not modelB_CollectEvents_2016:
+    modelB_CollectEvents_2016 = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\modelB_CollectEvents_2016" # provide a default value if unspecified
+
+modelB_Hotspots_2016 = arcpy.GetParameterAsText(15)
+if modelB_Hotspots_2016 == '#' or not modelB_Hotspots_2016:
+    modelB_Hotspots_2016 = "C:\\Users\\user\\Desktop\\CMap\\Η εργασία μου_final\\myGeodatabase.gdb\\modelB_Hotspots_2016" # provide a default value if unspecified
+
+# Local variables:
+all_Random = "Crime Data\\all_Random"
+MODEL_B_drugrelated2016 = drugRelated
+schools = "POI_Layers\\schools"
+Results_Field__2_ = MODEL_B_incid2015
+Z_Max_Value = MODEL_B_incid2015
+Results_Field__3_ = MODEL_B_incid2016
+Z_Max_Value__2_ = MODEL_B_incid2016
+Results_Field = modelB_CollectEvents2015
+Probability_Field = modelB_CollectEvents2015
+Source_ID = modelB_CollectEvents2015
+Results_Field__4_ = modelB_CollectEvents_2016
+Probability_Field__2_ = modelB_CollectEvents_2016
+Source_ID__2_ = modelB_CollectEvents_2016
+
+# Process: Select Layer By TimeOfCall
+arcpy.SelectLayerByAttribute_management(all_Random, "NEW_SELECTION", "TimeOfCall > date '2015-12-15 07:45:00'")
+
+# Process: Make Feature Layer (2)
+arcpy.MakeFeatureLayer_management(Incidents2016, MODEL_B_incid2016, "TimeofCall >= date '2016-01-01 09:21:00'", "", "OBJECTID_12 OBJECTID_12 VISIBLE NONE;OBJECTID OBJECTID VISIBLE NONE;Shape Shape VISIBLE NONE;POINT_X POINT_X VISIBLE NONE;POINT_Y POINT_Y VISIBLE NONE;AREA AREA VISIBLE NONE;PERIMETER PERIMETER VISIBLE NONE;TBLOCK_ TBLOCK_ VISIBLE NONE;TBLOCK_ID TBLOCK_ID VISIBLE NONE;MUN_NAME MUN_NAME VISIBLE NONE;MUN_CODE MUN_CODE VISIBLE NONE;NAME NAME VISIBLE NONE;OBJECTID_1 OBJECTID_1 VISIBLE NONE;DateofCall DateofCall VISIBLE NONE;IncidentCa IncidentCa VISIBLE NONE;Result Result VISIBLE NONE;CaseNotes CaseNotes VISIBLE NONE;CuState CuState VISIBLE NONE;IncidentId IncidentId VISIBLE NONE;TimeofCall TimeofCall VISIBLE NONE;ShowUpTime ShowUpTime VISIBLE NONE;PerpetrN PerpetrN VISIBLE NONE;PerpetrS PerpetrS VISIBLE NONE;Method Method VISIBLE NONE;PerpetrNum PerpetrNum VISIBLE NONE;Distance Distance VISIBLE NONE")
+
+# Process: SelectLayerBy ΕΓΚΛΗΜΑΤΑ ΠΟΥ ΣΧΕΤΙΖΟΝΤΑΙ ΜΕ ΝΑΡΚΩΤΙΚΑ
+arcpy.SelectLayerByAttribute_management(MODEL_B_incid2016, "NEW_SELECTION", "IncidentCa = 'ΕΓΚΛΗΜΑΤΑ ΠΟΥ ΣΧΕΤΙΖΟΝΤΑΙ ΜΕ ΝΑΡΚΩΤΙΚΑ'")
+
+# Process: Make Feature Layer (3)
+arcpy.MakeFeatureLayer_management(drugRelated, MODEL_B_drugrelated2016, "TimeofCall >= date '2016-01-01 09:21:00' AND IncidentCa = 'ΕΓΚΛΗΜΑΤΑ ΠΟΥ ΣΧΕΤΙΖΟΝΤΑΙ ΜΕ ΝΑΡΚΩΤΙΚΑ'", "", "OBJECTID_12 OBJECTID_12 VISIBLE NONE;OBJECTID OBJECTID VISIBLE NONE;Shape Shape VISIBLE NONE;POINT_X POINT_X VISIBLE NONE;POINT_Y POINT_Y VISIBLE NONE;AREA AREA VISIBLE NONE;PERIMETER PERIMETER VISIBLE NONE;TBLOCK_ TBLOCK_ VISIBLE NONE;TBLOCK_ID TBLOCK_ID VISIBLE NONE;MUN_NAME MUN_NAME VISIBLE NONE;MUN_CODE MUN_CODE VISIBLE NONE;NAME NAME VISIBLE NONE;OBJECTID_1 OBJECTID_1 VISIBLE NONE;DateofCall DateofCall VISIBLE NONE;IncidentCa IncidentCa VISIBLE NONE;Result Result VISIBLE NONE;CaseNotes CaseNotes VISIBLE NONE;CuState CuState VISIBLE NONE;IncidentId IncidentId VISIBLE NONE;TimeofCall TimeofCall VISIBLE NONE;ShowUpTime ShowUpTime VISIBLE NONE;PerpetrN PerpetrN VISIBLE NONE;PerpetrS PerpetrS VISIBLE NONE;Method Method VISIBLE NONE;PerpetrNum PerpetrNum VISIBLE NONE;Distance Distance VISIBLE NONE")
+
+# Process: Directional Distribution (Standard Deviational Ellipse)
+arcpy.DirectionalDistribution_stats(MODEL_B_drugrelated2016, DrugGeographicDistribution, "1_STANDARD_DEVIATION", "", "")
+
+# Process: Median Center
+arcpy.MedianCenter_stats(MODEL_B_incid2016, RELOCATION, "", "", "")
+
+# Process: Intersect
+arcpy.Intersect_analysis("POI_Layers\\schools #;MODEL_B_drugrelated2016 #", DrugsnearSchools_shp, "ALL", "100 Meters", "INPUT")
+
+# Process: Directional Distribution (Standard Deviational Ellipse) (2)
+arcpy.DirectionalDistribution_stats(MODEL_B_incid2016, IncidentsGeographicDistribution, "1_STANDARD_DEVIATION", "", "")
+
+# Process: Select Layer By TimeOfCall Attribute
+arcpy.SelectLayerByAttribute_management(all_Random, "NEW_SELECTION", "TimeOfCall < date '2016-01-01 09:21:00'")
+
+# Process: Make Feature Layer
+arcpy.MakeFeatureLayer_management(Incidents2015, MODEL_B_incid2015, "TimeofCall < date '2016-01-01 09:21:00'", "", "OBJECTID_12 OBJECTID_12 VISIBLE NONE;OBJECTID OBJECTID VISIBLE NONE;Shape Shape VISIBLE NONE;POINT_X POINT_X VISIBLE NONE;POINT_Y POINT_Y VISIBLE NONE;AREA AREA VISIBLE NONE;PERIMETER PERIMETER VISIBLE NONE;TBLOCK_ TBLOCK_ VISIBLE NONE;TBLOCK_ID TBLOCK_ID VISIBLE NONE;MUN_NAME MUN_NAME VISIBLE NONE;MUN_CODE MUN_CODE VISIBLE NONE;NAME NAME VISIBLE NONE;OBJECTID_1 OBJECTID_1 VISIBLE NONE;DateofCall DateofCall VISIBLE NONE;IncidentCa IncidentCa VISIBLE NONE;Result Result VISIBLE NONE;CaseNotes CaseNotes VISIBLE NONE;CuState CuState VISIBLE NONE;IncidentId IncidentId VISIBLE NONE;TimeofCall TimeofCall VISIBLE NONE;ShowUpTime ShowUpTime VISIBLE NONE;PerpetrN PerpetrN VISIBLE NONE;PerpetrS PerpetrS VISIBLE NONE;Method Method VISIBLE NONE;PerpetrNum PerpetrNum VISIBLE NONE;Distance Distance VISIBLE NONE")
+
+# Process: Directional Distribution (Standard Deviational Ellipse) (3)
+arcpy.DirectionalDistribution_stats(MODEL_B_incid2015, DirectDistribution_2015, "1_STANDARD_DEVIATION", "", "")
+
+# Process: Integrate
+arcpy.Integrate_management("MODEL_B_incid2015 #", "50 Meters")
+
+# Process: Collect Events
+arcpy.CollectEvents_stats(MODEL_B_incid2015, modelB_CollectEvents2015)
+
+# Process: Hot Spot Analysis (Getis-Ord Gi*)
+arcpy.HotSpots_stats(modelB_CollectEvents2015, "ICOUNT", ModelB_hotspots_2015, "FIXED_DISTANCE_BAND", "EUCLIDEAN_DISTANCE", "NONE", "1609", "", "", "NO_FDR")
+
+# Process: Integrate (2)
+arcpy.Integrate_management("MODEL_B_incid2016 #", "50 Meters")
+
+# Process: Collect Events (2)
+arcpy.CollectEvents_stats(MODEL_B_incid2016, modelB_CollectEvents_2016)
+
+# Process: Hot Spot Analysis (Getis-Ord Gi*) (2)
+arcpy.HotSpots_stats(modelB_CollectEvents_2016, "ICOUNT", modelB_Hotspots_2016, "FIXED_DISTANCE_BAND", "EUCLIDEAN_DISTANCE", "NONE", "1609", "", "", "NO_FDR")
+
+
+
+
+
+
+</textarea>
+<p class="mytext text-center">
+Crime Inspector’s source code, delivered by ArcGIS in Python, is stored can be
+ downloaded from <a href="#" target="_blank">Github</a>.
+</p>
+
+</div>
+</section>
+<!--end of Github-->
+
+
+<!--Contact-->
+<section id="contact" >
+<div class="row">
+<h3 id ="h3_contact" class="alert alert-success"><i class="fa fa-bookmark-o" aria-hidden="true"></i>
+Contact</h3>
+
+<p id="p_contact"><em>For<strong>questions, corrections and/or suggestions</strong>you may contact me <br> at loukoumi.vas@gmail.com or 
+through my social
+media accounts.<em> </p>
+
+<div class ="contact_buttons">
+<button class="btn btn-primary"><i class="fa fa-linkedin" aria-hidden="true"></i><a href="https://www.linkedin.com/in/vasiliki-loukoumi-41426492" target="_blank"></a></button>
+<button class="btn btn-primary"><i class="fa fa-github" aria-hidden="true"><a href="https://github.com/VasilikiLoukoumi" target="_blank"></a></i></button>
+
+</div>
+
+
+</section>
+<!--end of Contact-->
+
+</div>
+
+<!--Footer-->
+<div class="row">
+<section id="footer">
+
+<p id="p_foot" class="panel-footer"><i class="fa fa-copyright" aria-hidden="true"></i>Created by Vasiliki Loukoumi,<br>2016-17.</p>
+
+<a id="link" href="https://www.powtoon.com/c/dpm9i5gLeJM/1/p" target="_blank">Comic relief<i class="fa fa-external-link" aria-hidden="true"></i></a>
+</section>
+</div>
+<!--end of Footer-->
+</div>
+
+<script src="index.js"></script>
+</body>
+
+
+
+
+</html>
